@@ -8,5 +8,7 @@ public interface UsariosDAO {
     public boolean buscaMismoNombreYEmail(String insertCliente, String parametro) throws SQLException;
     public void insertDeUsuario(Usuario usuario) throws SQLException;
     public Usuario asignarValoresUsuario(Usuario usuario) throws SQLException;
+    public Usuario cambiaDatos(Usuario usuario) throws SQLException;
+    public Usuario cambiaContrasena(Usuario usuario) throws SQLException;
 
 }

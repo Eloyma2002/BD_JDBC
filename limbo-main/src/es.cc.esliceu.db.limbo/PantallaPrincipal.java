@@ -26,9 +26,9 @@ public class PantallaPrincipal {
             System.out.println(Color.RESET);
             System.out.println(Color.YELLOW + "*****************************");
             System.out.println("**         Opciones        **");
-            System.out.println("Usuari: " + usuario.getNombre() + "   " + Color.RED_BOLD + usuario.getUsername() + Color.RESET);
-            System.out.println("*****************************" + Color.RESET);
-            System.out.println();
+            System.out.println("** Usuari: " + usuario.getNombre() + "   " + Color.RED_BOLD + usuario.getUsername() + Color.RESET +
+                               Color.YELLOW + "           **"+ Color.RESET);
+            System.out.println(Color.YELLOW + "*****************************" + Color.RESET);
             System.out.println(Color.BLUE_BOLD + "c) " + Color.RESET + "Buscar productos");
             System.out.println(Color.BLUE_BOLD + "v) " + Color.RESET + "Ver cesta");
             System.out.println(Color.BLUE_BOLD + "d) " + Color.RESET + "Datos personales" + Color.BLACK);

@@ -21,7 +21,7 @@ public class Limbo {
         System.out.println(Color.BLUE_BOLD + "1) " + Color.RESET + "Login");
         System.out.println(Color.BLUE_BOLD + "2) " + Color.RESET + "Registrarse");
         System.out.println(Color.BLUE_BOLD + "x) " + Color.RESET + "Salida" + Color.BLACK);
-            System.out.print(Color.YELLOW_BACKGROUND + "Elige una opció: " + Color.RESET);
+        System.out.print(Color.YELLOW_BACKGROUND + "Elige una opció: " + Color.RESET);
 
          String elecion = scanner.nextLine();
 

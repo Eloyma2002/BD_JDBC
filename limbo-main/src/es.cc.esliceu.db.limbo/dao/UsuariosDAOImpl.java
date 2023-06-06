@@ -69,6 +69,34 @@ public class UsuariosDAOImpl implements UsariosDAO {
         return usuario;
     }
 
+    @Override
+    public Usuario cambiaDatos(Usuario usuario) throws SQLException {
+        Connection con = ConexionJDBC.creaConexion();
+
+        String update = "UPDATE client SET nom=?, cognom1=?, cognom2=? WHERE numero_client=?";
+        PreparedStatement statement = con.prepareStatement(update);
+        statement.setString(1, usuario.getNombre());
+        statement.setString(2, usuario.getPrimerApellido());
+        statement.setString(3, usuario.getSegonApellido());
+        statement.setInt(4, usuario.getNumero_client());
+        statement.execute();
+
+        return usuario;
+    }
+
+    @Override
+    public Usuario cambiaContrasena(Usuario usuario) throws SQLException {
+        Connection con = ConexionJDBC.creaConexion();
+
+        String update = "UPDATE client SET contrasenya=? WHERE numero_client=?";
+        PreparedStatement statement = con.prepareStatement(update);
+        statement.setString(1, usuario.getPassword());
+        statement.setInt(2, usuario.getNumero_client());
+        statement.execute();
+
+        return usuario;
+    }
+
     private int buscaIdCliente(Usuario usuario) throws SQLException {
         Connection con = ConexionJDBC.creaConexion();
 

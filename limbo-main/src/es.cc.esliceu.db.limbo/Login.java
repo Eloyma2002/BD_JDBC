@@ -56,7 +56,6 @@ public class Login {
             Limbo.info("Usuario validado correctamente");
             System.out.println();
             PantallaPrincipal.main(username, password);
-
             break;
         }
 
