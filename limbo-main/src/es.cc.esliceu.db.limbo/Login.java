@@ -1,9 +1,11 @@
 package es.cc.esliceu.db.limbo;
 
+import es.cc.esliceu.db.limbo.dao.UsariosDAO;
 import es.cc.esliceu.db.limbo.dao.UsuariosDAOImpl;
-import es.cc.esliceu.db.limbo.dao.UusariosDAO;
+import es.cc.esliceu.db.limbo.dao.UsariosDAO;
 import es.cc.esliceu.db.limbo.util.Color;
 import es.cc.esliceu.db.limbo.util.ConexionJDBC;
+import es.cc.esliceu.db.limbo.util.Usuario;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,7 +16,8 @@ public class Login {
     public static void logearse() throws SQLException {
         Connection con = ConexionJDBC.creaConexion();
         Scanner scanner = new Scanner(System.in);
-        UusariosDAO usuariosDAO = new UsuariosDAOImpl();
+        Usuario usuario = new Usuario();
+        UsariosDAO usuariosDAO = new UsuariosDAOImpl();
 
         System.out.println(Color.RESET);
         System.out.println(Color.YELLOW + "*****************************");
@@ -45,13 +48,15 @@ public class Login {
             }
             System.out.print(Color.BLACK);
             System.out.println();
-            System.out.print(Color.YELLOW_BACKGROUND + "Password:");
+            System.out.print(Color.YELLOW_BACKGROUND + "Password:" + Color.RESET);
             password = scanner.nextLine();
             if (!usuariosDAO.buscaMismoNombreYEmail(password, "contrasenya")) {
                 continue;
             }
             Limbo.info("Usuario validado correctamente");
             System.out.println();
+            PantallaPrincipal.main(username, password);
+
             break;
         }
 
