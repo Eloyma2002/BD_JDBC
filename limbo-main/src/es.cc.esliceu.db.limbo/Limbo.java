@@ -15,26 +15,26 @@ public class Limbo {
 
         while (true){
 
-        System.out.println(Color.YELLOW + "*****************************");
-        System.out.println("**         Limbo app       **");
-        System.out.println("*****************************" + Color.RESET);
-        System.out.println(Color.BLUE_BOLD + "1) " + Color.RESET + "Login");
-        System.out.println(Color.BLUE_BOLD + "2) " + Color.RESET + "Registrarse");
-        System.out.println(Color.BLUE_BOLD + "x) " + Color.RESET + "Salida" + Color.BLACK);
-        System.out.print(Color.YELLOW_BACKGROUND + "Elige una opció: " + Color.RESET);
+            System.out.println(Color.YELLOW + "*****************************");
+            System.out.println("**         Limbo app       **");
+            System.out.println("*****************************" + Color.RESET);
+            System.out.println(Color.BLUE_BOLD + "1) " + Color.RESET + "Login");
+            System.out.println(Color.BLUE_BOLD + "2) " + Color.RESET + "Registrarse");
+            System.out.println(Color.BLUE_BOLD + "x) " + Color.RESET + "Salida" + Color.BLACK);
+            System.out.print(Color.YELLOW_BACKGROUND + "Elige una opció: " + Color.RESET);
 
-         String elecion = scanner.nextLine();
+            String elecion = scanner.nextLine();
 
-         if (Objects.equals(elecion, "1")) {
-             Login.logearse();
-         } else if (Objects.equals(elecion, "2")) {
-             Registro.registrarse();
-         } else if (elecion.equalsIgnoreCase("x")) {
-             return;
-         } else {
-             Limbo.errada("Opción no válida");
-             System.out.println();
-         }
+            if (Objects.equals(elecion, "1")) {
+                Login.logearse();
+            } else if (Objects.equals(elecion, "2")) {
+                Registro.registrarse();
+            } else if (elecion.equalsIgnoreCase("x")) {
+                return;
+            } else {
+                Limbo.errada("Opción no válida");
+                System.out.println();
+            }
         }
     }
 
