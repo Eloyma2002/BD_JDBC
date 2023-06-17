@@ -1,10 +1,10 @@
 package es.cc.esliceu.db.limbo.dao;
 
+import es.cc.esliceu.db.limbo.Limbo;
 import es.cc.esliceu.db.limbo.util.Color;
 import es.cc.esliceu.db.limbo.util.ConexionJDBC;
 import es.cc.esliceu.db.limbo.util.Productos;
 
-import javax.swing.plaf.synth.ColorType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,4 +45,55 @@ public class ProductosDAOImpl implements ProductosDAO{
         }
         return list;
     }
+
+    @Override
+    public List<Productos> obtenTodosLosProductosOPorCategoria(int categoriaProducto) throws SQLException {
+        List<Productos> list = new ArrayList<>();
+        Connection con = ConexionJDBC.creaConexion();
+        String select = "";
+        PreparedStatement statement;
+
+        if (categoriaProducto == 0) {
+            select = "SELECT * FROM producte";
+            statement = con.prepareStatement(select);
+        } else if (categoriaProducto > 0 && categoriaProducto < 9) {
+            select = "SELECT * FROM producte WHERE categoria=?";
+            statement = con.prepareStatement(select);
+            statement.setInt(1, categoriaProducto);
+        } else {
+            Limbo.errada("Ha habido un error");
+            return null;
+        }
+
+        ResultSet rs = statement.executeQuery();
+
+        int i = 0;
+        while (rs.next()) {
+            Productos producto = new Productos();
+            producto.setId(rs.getInt("id"));
+            producto.setNombre(rs.getString("nom"));
+            producto.setDescripcion(rs.getString("descripcio"));
+            producto.setMarca(rs.getString("marca"));
+            producto.setPvp(rs.getFloat("pvp"));
+            producto.setIva(rs.getInt("iva"));
+            producto.setCategoria(rs.getInt("categoria"));
+            list.add(producto);
+            i++;
+        }
+        imprimeProductos(i, list);
+        return list;
+    }
+
+    private void imprimeProductos(int i, List<Productos> list) {
+
+        Limbo.info("Se han encontrado " + i + " productos");
+        for (int j = 0; j < list.size(); j++) {
+            System.out.print(Color.YELLOW);
+            System.out.print(j);
+            System.out.print(Color.RESET + "   " + list.get(j).getNombre() + "  " + list.get(j).getDescripcion() + Color.RESET +
+                    Color.CYAN_BRIGHT  + "  " + list.get(j).getMarca() + Color.BLUE_BOLD + "  "  + list.get(j).getPvp() + "€" + Color.RESET);
+            System.out.println();
+        }
+    }
+
 }

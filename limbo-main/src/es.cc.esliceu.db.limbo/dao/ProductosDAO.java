@@ -8,5 +8,6 @@ import java.util.List;
 public interface ProductosDAO {
 
     List <Productos> sugiereProductos() throws SQLException;
+    List<Productos> obtenTodosLosProductosOPorCategoria(int categoriaProducto) throws SQLException;
 }
 

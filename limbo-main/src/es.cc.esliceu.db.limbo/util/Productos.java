@@ -10,6 +10,16 @@ public class Productos {
     private String marca;
     private int categoria;
 
+    public int getUnidades() {
+        return unidades;
+    }
+
+    public void setUnidades(int unidades) {
+        this.unidades = unidades;
+    }
+
+    private int unidades;
+
     public int getId() {
         return id;
     }
