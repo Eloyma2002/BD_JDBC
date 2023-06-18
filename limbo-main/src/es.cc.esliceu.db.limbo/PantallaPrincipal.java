@@ -52,7 +52,7 @@ public class PantallaPrincipal {
                 buscarYAgregarProducto(cesta);
                 lineaCesta = true;
             } else if (eleccion.equalsIgnoreCase("v")) {
-                verCesta(cesta);
+                verCesta(cesta, usuario);
             } else if (eleccion.equalsIgnoreCase("d")) {
                 DatosPersonales.main(usuario);
             } else if (eleccion.equalsIgnoreCase("h")) {
@@ -68,7 +68,7 @@ public class PantallaPrincipal {
         }
     }
 
-    public static void verCesta(List<Productos> cesta) {
+    public static void verCesta(List<Productos> cesta, Usuario usuario) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println(Color.RESET);
         System.out.println(Color.YELLOW + "*****************************");
@@ -99,7 +99,7 @@ public class PantallaPrincipal {
                 if (eleccion.equalsIgnoreCase("e")) {
                     eliminaProducto(cesta);
                 } else if (eleccion.equalsIgnoreCase("p")) {
-                    Pagos.pantallaPago(cesta);
+                    Pagos.pantallaPago(cesta, usuario);
                 } else if (eleccion.equalsIgnoreCase("x")) {
                     return;
                 }
@@ -173,6 +173,8 @@ public class PantallaPrincipal {
         if (nombreProducto.equals("") && descripcionProducto.equals("")
                 && marcaProducto.equals("") && categoriaProducto == 0) {
             list = productosDAO.obtenTodosLosProductosOPorCategoria(categoriaProducto);
+        } else if (nombreProducto.length() > 0 || descripcionProducto.length() > 0 || marcaProducto.length() > 0) {
+            list = productosDAO.buscarProductos(nombreProducto, descripcionProducto, marcaProducto);
         } else if (categoriaProducto > 0 && categoriaProducto < 9) {
             list = productosDAO.obtenTodosLosProductosOPorCategoria(categoriaProducto);
         }

@@ -1,5 +1,8 @@
 package es.cc.esliceu.db.limbo;
 
+import es.cc.esliceu.db.limbo.dao.DireccionesDAO;
+import es.cc.esliceu.db.limbo.dao.DireccionesDAOImpl;
+import es.cc.esliceu.db.limbo.dao.TarjetasDAOImpl;
 import es.cc.esliceu.db.limbo.dao.UsuariosDAOImpl;
 import es.cc.esliceu.db.limbo.util.Color;
 import es.cc.esliceu.db.limbo.util.ConexionJDBC;
@@ -14,6 +17,8 @@ public class DatosPersonales {
         Connection con = ConexionJDBC.creaConexion();
         UsuariosDAOImpl usuariosDAO = new UsuariosDAOImpl();
         Scanner scanner = new Scanner(System.in);
+        DireccionesDAOImpl direccionesDAO = new DireccionesDAOImpl();
+        TarjetasDAOImpl tarjetasDAO = new TarjetasDAOImpl();
 
         while (true) {
             System.out.println(Color.RESET);
@@ -31,9 +36,11 @@ public class DatosPersonales {
             if (elecion.equalsIgnoreCase("d")) {
                 usuario = settings(usuario);
             } else if (elecion.equalsIgnoreCase("c")) {
+                // ME SALIA ERROR
             } else if (elecion.equalsIgnoreCase("a")) {
-
+                direccionesDAO.muestraDirecciones(usuario);
             } else if (elecion.equalsIgnoreCase("t")){
+                tarjetasDAO.obtenTarjetas(usuario);
             } else if (elecion.equalsIgnoreCase("h")) {
                 return;
             }

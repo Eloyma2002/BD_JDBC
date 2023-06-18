@@ -9,5 +9,6 @@ public interface ProductosDAO {
 
     List <Productos> sugiereProductos() throws SQLException;
     List<Productos> obtenTodosLosProductosOPorCategoria(int categoriaProducto) throws SQLException;
+    public List<Productos> buscarProductos(String nombre, String descripcion, String marca) throws SQLException;
 }
 
